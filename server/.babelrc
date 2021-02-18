@@ -1,0 +1,4 @@
+// 바벨 환결 설정
+{
+    "presets": ["@babel/preset-env"]
+}
