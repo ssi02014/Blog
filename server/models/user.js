@@ -21,11 +21,11 @@ const UserSchema = new mongoose.Schema({
         enum: ["Admin", "SubAdmin", "User"],
         default: "User"
     },
-    register_date : {
+    register_date: {
         type: Date,
         default: moment().format("YYYY-MM-DD hh:mm:ss"),
     },
-    comments = [
+    comments: [
         {
             post_id: {
                 type: mongoose.Schema.Types.ObjectId,
