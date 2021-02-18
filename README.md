@@ -1,8 +1,8 @@
 # 💻 Blog
-### MERN(Mongodb, Express, React, Node) Stack으로 만든 나만의 블로그
+### MERN(Mongodb, Express, React, Node) Stack으로 만든 나만의 블로그😁
 
-<br>
-<br>
+<br />
+<br />
 
 ## 🔖 Stack
 ### 👨🏻‍💻 Backend
@@ -10,7 +10,7 @@
 2. Express
 3. MongoDB
 
-<br>
+<br />
 
 ### 👨🏻‍💻 Frontend
 1. Reack
@@ -19,9 +19,10 @@
 4. Ckeditor5
 5. Styling: Bootstrap4, SCSS
 
-<br>
+<br />
+<br />
 
-## 📈 프로젝트 진행 중 추가 학습 내용
+## 📈 Server: 프로젝트 진행 중 추가 학습 내용
 ### 🔍 1. Babel
 - 자바스크립트 컴파일러, 최신 버전의 자바스크립트 문법은 브라우저가 이해하지 못하기 때문에 **babel**이 브라우저가 이해할 수 있는 문법으로 변환한다.
 ```javascript
@@ -32,36 +33,36 @@
     }
 ```
 
-<br>
+<br />
 
-### 🔍 2. Mongoose 최신 버전 오류 해결책
+### 🔍 2. Mongoose 오류 해결책
 1. **mongoose version 5.11.16으로 인한 오류💥**
 ```
     - DeprecationWarning: Listening to events on the Db class has been deprecated and will be removed in the next major version.
 ```
 
-2. **해결책✅**
+<br />
+
+2. **해결책** (버전 낮추기)✅
 ```
     - npm uninstall mongoose
     - npm install mongoose@5.11.15
 ```
 
 
-<br>
+<br />
 
 ## 🔍 
-```javascript
-
-    }
+```
 ```
 
-<br>
+<br />
 
 ## 🔍 
 ```javascript
     
 ```
 
-<br>
+<br />
 
 ## 🏃 Redux
