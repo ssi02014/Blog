@@ -4,12 +4,12 @@
   "main": "index.js",
   "author": "JeonMinJae",
   "scripts": {
-    "start": "node server.js --exec babel-node",
-    "start:dev": "nodemon server.js --exec babel-node",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev-watch": "babel-watch server.js --ignore'./client'",
+    "start:dev": "nodemon server.js --exec babel-node"
   },
   "license": "ISC",
   "dependencies": {
+    "babel-watch": "^7.4.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
