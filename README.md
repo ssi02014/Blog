@@ -1,5 +1,5 @@
 # 💻 Blog
-### MERN(Mongodb, Express, React, Node) STACK으로 만든 나만의 블로그
+### MERN(Mongodb, Express, React, Node) Stack으로 만든 나만의 블로그
 
 <br>
 <br>
@@ -33,6 +33,18 @@
 ```
 
 <br>
+
+### 🔍 2. Mongoose 최신 버전 오류 해결책
+1. **mongoose version 5.11.16으로 인한 오류💥**
+```
+    - DeprecationWarning: Listening to events on the Db class has been deprecated and will be removed in the next major version.
+```
+
+2. **해결책✅**
+```
+    - npm uninstall mongoose
+    - npm install mongoose@5.11.15
+```
 
 
 <br>
