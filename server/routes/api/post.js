@@ -1,6 +1,7 @@
 import express from 'express';
 
 import Post from '../../models/post'; //Model
+import auth from '../../middleware/auth'; //Middleware
 
 const router = express.Router();
 
@@ -11,7 +12,7 @@ router.get('/', async(req, res) => {
     res.json(postFindResult);
 })
 
-router.post('/', async(req, res, next) => {
+router.post('/', auth, async(req, res, next) => {
     try {
         console.log(req, "req");
 

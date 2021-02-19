@@ -12,11 +12,10 @@ const router = express.Router();
 // @routes     GET api/user
 // @desc       Get all user
 // @access     public
-
 router.get('/', async(req, res) => {
     try {
         const users = await User.find()
-        if(!users) throw Error("No users");
+        if (!users) throw Error("No users");
         res.status(200).json(users);
     } catch(e) {
         console.log(e);
@@ -27,7 +26,6 @@ router.get('/', async(req, res) => {
 // @routes  POST api/user
 // @desc    Register user
 // @access  Public
-
 router.post('/', (req, res) => {
     console.log(req.body);
     const { name, email, password } = req.body;
@@ -40,14 +38,17 @@ router.post('/', (req, res) => {
     User.findOne({ email })
         .then(user => {
             if (user) return res.status(400).json({ msg: "이미 가입된 유저가 존재합니다." });
+
             const newUser = new User({
                 name, email, password
             });
-            
+
             bcrypt.genSalt(10, (err, salt) => {
                 bcrypt.hash(newUser.password, salt, (err, hash) => {
                     if (err) throw err;
+
                     newUser.password = hash;
+
                     newUser.save().then(user => {
                         jwt.sign(
                             { id: user.id },
@@ -55,6 +56,7 @@ router.post('/', (req, res) => {
                             { expiresIn: 3600 },
                             (err, token) => {
                                 if (err) throw err;
+
                                 res.json({
                                     token,
                                     user: {
@@ -69,6 +71,6 @@ router.post('/', (req, res) => {
                 });
             });
         });
-})
+});
 
 export default router

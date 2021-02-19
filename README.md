@@ -52,8 +52,18 @@
 
 <br />
 
-## 🔍 
-```
+## 🔍 3. ./config/index.js
+### .env 정보 가져오기(Mogondb uri, port, jwt)
+```javascript
+    import dotenv from 'dotenv';
+
+    dotenv.config();
+
+    export default {
+        MONGO_URI: process.env.MONGO_URI,
+        JWT_SECRET: process.env.JWT_SECRET,
+        PORT: process.env.PORT,
+    }
 ```
 
 <br />
