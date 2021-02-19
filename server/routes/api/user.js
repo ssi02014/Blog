@@ -6,12 +6,8 @@ import config from '../../config/index';
 import User from '../../models/user'; //Model
 
 const { JWT_SECRET } = config;
-
 const router = express.Router();
 
-// @routes     GET api/user
-// @desc       Get all user
-// @access     public
 router.get('/', async(req, res) => {
     try {
         const users = await User.find()
@@ -23,9 +19,7 @@ router.get('/', async(req, res) => {
     }
 });
 
-// @routes  POST api/user
-// @desc    Register user
-// @access  Public
+
 router.post('/', (req, res) => {
     console.log(req.body);
     const { name, email, password } = req.body;
