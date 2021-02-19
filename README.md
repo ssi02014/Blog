@@ -4,16 +4,16 @@
 <br />
 <br />
 
-## 🙏 Blog App clone 시 행동 수칙
-1. **" npm install or yarn install "** 을 server 폴더에서 입력해주세요. (백엔드 종속성 다운받기)
-2. **" npm install or yarn install "** 을 client 폴더에서 입력해주세요. (프론트엔드 종속성 다운받기)
-3. **.env** 파일을 server 폴더에 만들어주셔야 됩니다. (밑에 참고)
+## 🙏 Blog App clone 행동 수칙
+1. **" npm install or yarn install "** 을 server 폴더에서 입력해주세요. **(백엔드 종속성 다운받기)**
+2. **" npm install or yarn install "** 을 client 폴더에서 입력해주세요. **(프론트엔드 종속성 다운받기)**
+3. **.env** 파일을 server 폴더에 만들어주셔야 됩니다. **(밑에 참고)👇**
 3. server 실행 시 **start:dev**로 실행해주세요. 
 
 <br />
 <br />
 
-## 🔖 Stack
+## 🔖 Main Development Stack
 ### 👨🏻‍💻 Backend
 1. Node.js
 2. Express
@@ -33,7 +33,7 @@
 
 ## 📈 Server: 학습 내용 및 이슈
 ### 🔍 1. server에서 Babel 환경 설정 
-- 자바스크립트 컴파일러, 최신 버전의 자바스크립트 문법은 브라우저가 이해하지 못하기 때문에 **babel**이 브라우저가 이해할 수 있는 문법으로 변환한다.
+- **Babel**: 자바스크립트 컴파일러, 최신 버전의 자바스크립트 문법은 브라우저가 이해하지 못하기 때문에 브라우저가 이해할 수 있는 문법으로 변환한다.
 ```javascript
     // ./server/.babelrc
     // 서버에서 바벨 환경 설정
