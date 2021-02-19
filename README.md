@@ -4,6 +4,15 @@
 <br />
 <br />
 
+## 🙏 Blog App clone 시 행동 수칙
+1. **" npm install or yarn install "** 을 server 폴더에서 입력해주세요. (백엔드 종속성 다운받기)
+2. **" npm install or yarn install "** 을 client 폴더에서 입력해주세요. (프론트엔드 종속성 다운받기)
+3. server 폴더에서 **" npm start:dev or yarn start:dev "** 를 통해 server를 실행시켜주세요.
+4. client 폴더에서 **" npm start or yarn start "** 를 통해 client를 실행시켜주세요.
+
+<br />
+<br />
+
 ## 🔖 Stack
 ### 👨🏻‍💻 Backend
 1. Node.js
