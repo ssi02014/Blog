@@ -8,6 +8,7 @@ import {
 
 } from '../types';
 
+//초기값
 const initialState = {
     token: localStorage.getItem('token'),
     isAuthenticated: null,
@@ -21,7 +22,7 @@ const initialState = {
 }
 
 const authReducer = (state = initialState, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case LOGIN_REQUEST:
             return {
                 ...state,

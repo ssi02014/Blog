@@ -21,7 +21,7 @@ function* loginUser(action) {
 
         yield put({
             type: LOGIN_SUCCESS,
-            payload: result.data
+            payload: result.data,
         });
     } catch (e) {
         yield put({
@@ -37,6 +37,6 @@ function* watchLoginUser() {
 
 export default function* authSaga() {
     yield all([
-        fork(watchLoginUser)
+        fork(watchLoginUser),
     ]);
 }
