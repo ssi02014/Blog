@@ -15,6 +15,7 @@ function loginUserAPI(loginData) {
 
 function* loginUser(action) {
     try {
+        //action.payload: {email: ~, password: ~} 
         const result = yield call(loginUserAPI, action.payload);
 
         console.log(result);
@@ -22,12 +23,12 @@ function* loginUser(action) {
         yield put({
             type: LOGIN_SUCCESS,
             payload: result.data,
-        });
+        }); //성공 액션 dispatch
     } catch (e) {
         yield put({
             type: LOGIN_FAILURE,
             payload: e.response,
-        });
+        }); //실패 액션 dispatch
     }
 }
 
