@@ -22,11 +22,11 @@
 <br />
 
 ### 👨🏻‍💻 Frontend
-1. Reack
+1. React
 2. Redux, Redux-Saga
 3. Infinite Scroll(Intersection Observer)
 4. Ckeditor5
-5. Styling: Bootstrap4, SCSS
+5. Styling: Bootstrap4(reactstrap), SCSS
 
 <br />
 <br />
@@ -90,9 +90,26 @@
 <br />
 
 ## 📈 Client: 학습 내용 및 이슈
-## 🔍 node-sass 최신 버전 오류 해결책 ✅
+### 🔍 1. node-sass 최신 버전 오류 해결책 ✅
 ```
     - npm install node-sass@4.14.1
+```
+
+<br />
+
+### 🔍 2. reactstrap 사용법
+### reactstarp: https://reactstrap.github.io/
+```javascript
+    //Header
+    import { Row, Col } from 'reactstrap';
+   
+   //class에 text-center, m-auto 같이 추가해서 적용시킨다.
+    <Row>
+        <Col md="6" sm="auto" className="text-center m-auto">
+            <h1>Read Our Blog</h1>
+            <p>This is Minjae's Side Project Blog</p>
+        </Col>
+    </Row>
 ```
 
 <br />
