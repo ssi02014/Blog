@@ -134,6 +134,7 @@
         export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
         export const LOGIN_FAILURE = "LOGIN_FAILURE";
 
+
     2. 초기 값 및 Reducer 함수 작성
         - 초기 값 설정
         const initialState = {
@@ -158,9 +159,11 @@
 
         export default authReducer;
 
+
     3. rootReducer에 통합
 
-    3. Saga 작성
+
+    4. Saga 작성
         - Saga 작성 예시(logout)
         function* logout(action) {
             try {
@@ -187,9 +190,11 @@
             ]);
         }
 
-    4. rootSaga에 통합
 
-    5. component에서 dispatch 
+    5. rootSaga에 통합
+
+
+    6. component에서 dispatch 
         - dispatch 작성 예제 (LoginModal)
         const handleToggle = () => {
             dispatch({
@@ -197,4 +202,5 @@
             })
             setModal(!modal);
         };
+
 ```
