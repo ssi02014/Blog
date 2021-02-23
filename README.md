@@ -115,7 +115,7 @@
 <br />
 
 ## 🏃 Redux
-### 🔍 Redux-Saga Effect
+### 🔍 1. Redux-Saga Effect
 ```
     1. put: 특정 액션을 dispatch 한다.
     2. takeEvery: 들어오는 모든 액션에 대해 특정 작업을 처리해준다.
@@ -123,4 +123,78 @@
     4. all: 여러 사가를 합쳐 주는 역할을 한다.
     5. fork: 함수를 실행시켜주는 이펙트, 하지만 비동기 실행을 한다.
     6. call: promise를 반환하는 함수를 호출하고, 결과가 반환 될 때까지 기다린다.
+```
+
+<br />
+
+### 🔍 2. Redux-Saga Process
+```javascript
+    1. 액션 타입 정의 예시
+        export const LOGIN_REQUEST = "LOGIN_REQUEST";
+        export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+        export const LOGIN_FAILURE = "LOGIN_FAILURE";
+
+    2. 초기 값 및 Reducer 함수 작성
+        - 초기 값 설정
+        const initialState = {
+            token: localStorage.getItem('token'),
+            isAuthenticated: null,
+            isLoading: false,
+            ...
+        }
+
+        - Reducer 함수 작성 예시
+        const authReducer = (state = initialState, action) => {
+            switch (action.type) {
+                case LOGIN_REQUEST:
+                    return {
+                        ...state,
+                        errorMsg: "",
+                        isLoading: true,
+                    }
+                 default:
+                    return state
+            }
+
+        export default authReducer;
+
+    3. rootReducer에 통합
+
+    3. Saga 작성
+        - Saga 작성 예시(logout)
+        function* logout(action) {
+            try {
+                yield put({
+                    type: LOGOUT_SUCCESS,
+                });
+            } catch (e) {
+                yield put({
+                    type: LOGOUT_FAILURE,
+                }); 
+                console.log(e);
+            }
+        }
+
+        function* watchLogout() {
+            yield takeEvery(LOGOUT_REQUEST, logout);
+        }
+        //authSaga() 여러 Saga 통합
+        export default function* authSaga() {
+            yield all([
+                fork(watchLoginUser),
+                fork(watchLogout),
+                fork(watchLoadingUser),
+            ]);
+        }
+
+    4. rootSaga에 통합
+
+    5. component에서 dispatch 
+        - dispatch 작성 예제 (LoginModal)
+        const handleToggle = () => {
+            dispatch({
+                type: CLEAR_ERROR_REQUEST,
+            })
+            setModal(!modal);
+        };
 ```
