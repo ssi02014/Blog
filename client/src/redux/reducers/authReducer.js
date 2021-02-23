@@ -7,8 +7,13 @@ import {
     LOGIN_SUCCESS, 
     LOGOUT_FAILURE, 
     LOGOUT_REQUEST,
-    LOGOUT_SUCCESS
-
+    LOGOUT_SUCCESS,
+    USER_LOADING_FAILURE,
+    USER_LOADING_SUCCESS,
+    USER_LOADING_REQUEST,
+    REGISTER_REQUEST,
+    REGISTER_SUCCESS,
+    REGISTER_FAILURE,
 } from '../types';
 
 //초기값
@@ -27,6 +32,7 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
          //이런식으로 하면 바로 밑에 있는 LOGIN_REQUEST와 같은 기능을 함
+        case REGISTER_REQUEST:
         case LOGOUT_REQUEST:
         case LOGIN_REQUEST:
             return {
@@ -34,7 +40,8 @@ const authReducer = (state = initialState, action) => {
                 errorMsg: "",
                 isLoading: true,
             }
-
+        
+        case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
             localStorage.setItem("token", action.payload.token);
             return {
@@ -47,6 +54,7 @@ const authReducer = (state = initialState, action) => {
                 errorMsg: "",
             }
             
+        case REGISTER_FAILURE:
         case LOGOUT_FAILURE:
         case LOGIN_FAILURE:
             localStorage.removeItem("token");
@@ -74,6 +82,32 @@ const authReducer = (state = initialState, action) => {
                 errorMsg: "",
             }
 
+        case USER_LOADING_REQUEST:
+            return {
+                ...state,
+                isLoading: true,
+            } 
+
+        case USER_LOADING_SUCCESS:
+            return {
+                ...state,
+                isAuthenticated: true,
+                isLoading: false,
+                user: action.payload,
+                userId: action.payload._id,
+                userName: action.payload.name,
+                userRole: action.payload.role,
+            }
+
+        case USER_LOADING_FAILURE:
+            return {
+                ...state,
+                user: null,
+                isAuthenticated: false,
+                isLoading: false,
+                userRole: "",
+            } 
+
         case CLEAR_ERROR_REQUEST:
             return {
                 ...state,
@@ -91,6 +125,7 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 errorMsg: null,
             }  
+
         default:
             return state
     }

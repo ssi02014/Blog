@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import loadUser from './components/auth/loadUser';
 import reportWebVitals from './reportWebVitals';
+
+loadUser()
 
 ReactDOM.render(
   <React.Fragment>

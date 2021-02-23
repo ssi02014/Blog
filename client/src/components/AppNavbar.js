@@ -9,7 +9,6 @@ import LoginModal from './auth/LoginModal';
 const AppNavbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { isAuthenticated, user, userRole } = useSelector(state => state.auth);
-    console.log(userRole, "UserRole");
 
     const dispatch = useDispatch();
 
@@ -72,10 +71,10 @@ const AppNavbar = () => {
     const guestLink = (
         <Fragment>
             <NavItem>
-                <RegisterModal></RegisterModal>
+                <RegisterModal />
             </NavItem>
             <NavItem>
-                <LoginModal></LoginModal>
+                <LoginModal />
             </NavItem>
         </Fragment>
     )
