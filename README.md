@@ -129,13 +129,13 @@
 
 ### 🔍 2. Redux-Saga Process
 ```javascript
-    1. 액션 타입 정의 예시
+    1. 📃 액션 타입 정의 예시
         export const LOGIN_REQUEST = "LOGIN_REQUEST";
         export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
         export const LOGIN_FAILURE = "LOGIN_FAILURE";
 
 
-    2. 초기 값 및 Reducer 함수 작성
+    2. 📃 초기 값 및 Reducer 함수 작성
         - 초기 값 설정
         const initialState = {
             token: localStorage.getItem('token'),
@@ -160,10 +160,10 @@
         export default authReducer;
 
 
-    3. rootReducer에 통합
+    3. 📃 rootReducer에 통합
 
 
-    4. Saga 작성
+    4. 📃 Saga 작성
         - Saga 작성 예시(logout)
         function* logout(action) {
             try {
@@ -191,10 +191,10 @@
         }
 
 
-    5. rootSaga에 통합
+    5. 📃 rootSaga에 통합
 
 
-    6. component에서 dispatch 
+    6. 📃 component에서 dispatch 
         - dispatch 작성 예제 (LoginModal)
         const handleToggle = () => {
             dispatch({
