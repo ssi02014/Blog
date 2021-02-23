@@ -11,7 +11,7 @@ const Footer = () => {
         <div id="main-footer" className="main-footer">
             <Row>
                 <Col>
-                    <p>Copyright &copy; <span>{thisYear()}</span></p>
+                    <p>Copyright &copy; <span>{thisYear()}</span> Jeon Min Jae</p>
                 </Col>
             </Row>
         </div>

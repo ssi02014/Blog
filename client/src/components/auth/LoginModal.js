@@ -50,6 +50,7 @@ const LoginModal = () => {
     const onSubmit = e => {
         e.preventDefault();
         const { email, password } = formValues;
+        
         const user = { email, password };
         console.log(user);
         dispatch({
@@ -69,14 +70,12 @@ const LoginModal = () => {
                 </ModalHeader>
                 <ModalBody>
                     {localMsg ? 
-                    <Alert color="danger">{localMsg}</Alert>
-                    :
-                    null}
+                        <Alert color="danger">{localMsg}</Alert> : null}
                 </ModalBody>
                 <Form 
                     style={{ padding: '0 20px 20px 20px'}}
                     onSubmit={onSubmit}
-                    >
+                >
                     <FormGroup>
                         <Label for="eamil">Email</Label>
                         <Input 

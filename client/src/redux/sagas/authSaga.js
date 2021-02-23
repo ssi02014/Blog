@@ -1,6 +1,13 @@
 import axios from 'axios';
 import { all, fork, put, takeEvery, call } from 'redux-saga/effects';
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from '../types';
+import { 
+    LOGIN_FAILURE, 
+    LOGIN_REQUEST, 
+    LOGIN_SUCCESS, 
+    LOGOUT_SUCCESS, 
+    LOGOUT_FAILURE, 
+    LOGOUT_REQUEST, 
+} from '../types';
 
 //Login
 function loginUserAPI(loginData) {
@@ -33,11 +40,31 @@ function* loginUser(action) {
 }
 
 function* watchLoginUser() {
+    //LOGIN_REQUEST가 있으면 loginUser를 실행해라 라는 뜻
     yield takeEvery(LOGIN_REQUEST, loginUser);
+}
+
+//Logout
+function* logout(action) {
+    try {
+        yield put({
+            type: LOGOUT_SUCCESS,
+        }); //성공 액션 dispatch
+    } catch (e) {
+        yield put({
+            type: LOGOUT_FAILURE,
+        }); 
+        console.log(e);
+    }
+}
+
+function* watchLogout() {
+    yield takeEvery(LOGOUT_REQUEST, logout);
 }
 
 export default function* authSaga() {
     yield all([
         fork(watchLoginUser),
+        fork(watchLogout),
     ]);
 }

@@ -4,7 +4,10 @@ import {
     CLEAR_ERROR_SUCCESS,
     LOGIN_FAILURE, 
     LOGIN_REQUEST, 
-    LOGIN_SUCCESS 
+    LOGIN_SUCCESS, 
+    LOGOUT_FAILURE, 
+    LOGOUT_REQUEST,
+    LOGOUT_SUCCESS
 
 } from '../types';
 
@@ -23,6 +26,8 @@ const initialState = {
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
+         //이런식으로 하면 바로 밑에 있는 LOGIN_REQUEST와 같은 기능을 함
+        case LOGOUT_REQUEST:
         case LOGIN_REQUEST:
             return {
                 ...state,
@@ -41,7 +46,8 @@ const authReducer = (state = initialState, action) => {
                 userRole: action.payload.user.role,
                 errorMsg: "",
             }
-
+            
+        case LOGOUT_FAILURE:
         case LOGIN_FAILURE:
             localStorage.removeItem("token");
             return {
@@ -54,6 +60,18 @@ const authReducer = (state = initialState, action) => {
                 isLoading: false,
                 userRole: null,
                 errorMsg: action.payload.data.msg,
+            }
+
+        case LOGOUT_SUCCESS:
+            localStorage.removeItem("token");
+            return {
+                token: null,
+                user: null,
+                userId: null,
+                isAuthenticated: false,
+                isLoading: false,
+                userRole: null,
+                errorMsg: "",
             }
 
         case CLEAR_ERROR_REQUEST:
