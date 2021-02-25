@@ -128,14 +128,30 @@
 <br />
 
 ### 🔍 Redux Setting
-```
+```javascript
     1. Connected React Router
         - 리덕스에서 history 객체 관리를 위한 라이브러리 
         - 주의사항 router 리듀서명은 router로 고정!
         - history는 history 모듈에서 createBrowserHistory로 받아올 수 있다.
         - 참고: https://hokeydokey.tistory.com/m/74?category=783109
+
     2. createSagaMiddleware
         - redux-saga 미들웨어를 Redux Subspace 미들웨어로 생성하는 기능
+        - const sagaMiddleware = createSagaMiddleware();
+
+    3. redux의 store 생성, 리듀서와 미들웨어 사용
+        - const store = createStore(reducers, applyMiddleware(sagaMiddleware)
+
+    4. 항상 store 보다 아래에서 코드가 작성되어야 한다. rootSaga를 인자로 둔다.
+        - sagaMiddleware.run(rootSaga)
+
+    6. 
+        ReactDOM.render(
+            <Provider store={store}>
+                <App />
+            </Provider>,  
+            document.querSelector('#root');
+        )
 ```
 <br />
 
