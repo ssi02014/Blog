@@ -122,12 +122,24 @@
     3. takeLatest: 기존에 진행 중이던 작업이 있다면 취소하고, 가장 마지막으로 실행된 작업만 수행한다.
     4. all: 여러 사가를 합쳐 주는 역할을 한다.
     5. fork: 함수를 실행시켜주는 이펙트, 하지만 비동기 실행을 한다.
-    6. call: promise를 반환하는 함수를 호출하고, 결과가 반환 될 때까지 기다린다.
+    6. call: promise를 반환하는 함수를 호출하고, 결과가 반환 될 때까지 기다린다(즉, 동기로 실행)
 ```
 
 <br />
 
-### 🔍 2. Redux-Saga Process
+### 🔍 Redux Setting
+```
+    1. Connected React Router
+        - 리덕스에서 history 객체 관리를 위한 라이브러리 
+        - 주의사항 router 리듀서명은 router로 고정!
+        - history는 history 모듈에서 createBrowserHistory로 받아올 수 있다.
+        - 참고: https://hokeydokey.tistory.com/m/74?category=783109
+    2. createSagaMiddleware
+        - redux-saga 미들웨어를 Redux Subspace 미들웨어로 생성하는 기능
+```
+<br />
+
+### 🔍 3. Redux-Saga Process
 ```javascript
     1. 📃 액션 타입 정의 예시
         export const LOGIN_REQUEST = "LOGIN_REQUEST";
