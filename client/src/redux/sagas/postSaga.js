@@ -4,7 +4,7 @@ import axios from 'axios';
 import { 
     POSTS_LOADING_FAILURE, 
     POSTS_LOADING_SUCCESS,
-    POSTS_WRITE_REQUEST 
+    POSTS_LOADING_REQUEST 
 } from '../types';
 
 const loadPostsAPI = () => {
@@ -30,7 +30,7 @@ function* loadPosts() {
 }
 
 function* watchLoadPosts() {
-    yield takeEvery(POSTS_WRITE_REQUEST, loadPosts);
+    yield takeEvery(POSTS_LOADING_REQUEST, loadPosts);
 }
 
 export default function* postSaga() {

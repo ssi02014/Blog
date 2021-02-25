@@ -35,7 +35,7 @@ const AppNavbar = () => {
             <NavItem>
                 {userRole === "Admin" ? (
                     <Form className="col mt-2">
-                        <Link to="post" className="btn btn-success block text-white px-3" onClick={addPostClick}>
+                        <Link to="/post" className="btn btn-success block text-white px-3" onClick={addPostClick}>
                             Add Post
                         </Link>
                     </Form>

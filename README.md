@@ -44,20 +44,12 @@
 
 <br />
 
-### 🔍 2. Mongoose 오류 해결책
+### 🔍 2. Mongoose 오류 및 해결책
 1. **mongoose version 5.11.16으로 인한 오류💥**
 ```
     - DeprecationWarning: Listening to events on the Db class has been deprecated and will be removed in the next major version.
+    - ✅ npm install mongoose@5.11.15 (버전 낮추기)
 ```
-
-<br />
-
-2. **해결책** (버전 낮추기)✅
-```
-    - npm uninstall mongoose
-    - npm install mongoose@5.11.15
-```
-
 
 <br />
 
@@ -90,14 +82,24 @@
 <br />
 
 ## 📈 Client: 학습 내용 및 이슈
-### 🔍 1. node-sass 최신 버전 오류 해결책 ✅
+### 🔍 1. node-sass 최신 버전 오류 해결책 
 ```
-    - npm install node-sass@4.14.1
+    - ✅ npm install node-sass@4.14.1
 ```
 
 <br />
 
-### 🔍 2. reactstrap 사용법
+### 🔍 2. node-sass 최신 버전 오류 해결책 ✅
+```
+    - 💥Error: Could not find router reducer in state tree, it must be mounted under "router"
+    - 이유: connected-react-router가 아직 history v5를 제대로 반영하지 못해 발생하는 문제. 
+
+    - ✅ npm i history@4.7.2 (버전 낮추기)
+```
+
+<br />
+
+### 🔍 3. reactstrap 사용법
 ### reactstarp: https://reactstrap.github.io/
 ```javascript
     //Header
@@ -112,6 +114,19 @@
     </Row>
 ```
 
+### 🔍 4. font-awesome 사용법
+```javascript
+    1. yarn add or npm i @fortawesome/fontawesome-svg-core
+    2. yarn add or npm i @fortawesome/free-solid-svg-icons
+    3. yarn add or npm i @fortawesome/react-fontawesome
+
+    import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+    import { faMouse } from '@fortawesome/free-solid-svg-icons';
+
+    <FontAwesomeIcon icon={faMouse} />
+```
+
+<br />
 <br />
 
 ## 🏃 Redux
@@ -127,7 +142,7 @@
 
 <br />
 
-### 🔍 Redux Setting
+### 🔍 Redux, Redux-Saga Setting
 ```javascript
     1. Connected React Router
         - 리덕스에서 history 객체 관리를 위한 라이브러리 
