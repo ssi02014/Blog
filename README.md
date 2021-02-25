@@ -136,6 +136,7 @@
 
 
     2. 📃 초기 값 및 Reducer 함수 작성
+
         - 초기 값 설정
         const initialState = {
             token: localStorage.getItem('token'),
@@ -164,6 +165,7 @@
 
 
     4. 📃 Saga 작성
+
         - Saga 작성 예시(logout)
         function* logout(action) {
             try {
@@ -195,7 +197,8 @@
 
 
     6. 📃 component에서 dispatch 
-        - dispatch 작성 예제 (LoginModal)
+
+        - dispatch 작성 예시(LoginModal)
         const handleToggle = () => {
             dispatch({
                 type: CLEAR_ERROR_REQUEST,
