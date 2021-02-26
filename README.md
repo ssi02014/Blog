@@ -130,11 +130,115 @@
 
 <br />
 
-### 🔍 4. CKEditor
+### 🔍 4. CKEditor5 Setting
 ### CKEditor: https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/react.html
 ```javascript
     1. npm run eject
-    2. 
+
+    2. yarn add @babel/plugin-transform-react-jsx @babel/plugin-transform-react-jsx-self
+
+    3. plugin Install
+        - yarn add  @ckeditor/ckeditor5-adapter-ckfinder @ckeditor/ckeditor5-alignment @ckeditor/ckeditor5-autoformat @ckeditor/ckeditor5-basic-styles @ckeditor/ckeditor5-block-quote @ckeditor/ckeditor5-build-balloon @ckeditor/ckeditor5-build-classic @ckeditor/ckeditor5-build-inline @ckeditor/ckeditor5-dev-utils @ckeditor/ckeditor5-dev-webpack-plugin @ckeditor/ckeditor5-easy-image @ckeditor/ckeditor5-editor-balloon @ckeditor/ckeditor5-editor-classic @ckeditor/ckeditor5-essentials @ckeditor/ckeditor5-font @ckeditor/ckeditor5-heading @ckeditor/ckeditor5-image @ckeditor/ckeditor5-indent @ckeditor/ckeditor5-link @ckeditor/ckeditor5-list @ckeditor/ckeditor5-media-embed @ckeditor/ckeditor5-paragraph @ckeditor/ckedito5-paste-from-office @ckeditor/ckeditor5-react @ckeditor/ckeditor5-table @ckeditor/ckeditor5-theme-lark @ckeditor/ckeditor5-typing @ckeditor/ckeditor5-upload
+
+    4. webpack.config.js Setting
+        - webpack: 웹을 구성하는 .js, .css, .jpg, .png 같은 static assets을 하나의 파일로 합쳐줌
+
+        //webpack.config.js 34번째 줄에 소스 추가
+        const { styles } = require('@ckeditor/ckeditor5-dev-utils');
+        const CKEditorWebpackPlugin = require("@ckeditor/ckeditor5-dev-webpack-plugin");
+
+        //webpack.config.js 467번째 줄에 소스 추가 (inputSource 검색)
+        {
+            test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
+            use: [ 'raw-loader' ]
+        },
+        {
+            test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
+            use: [
+                {
+                    loader: 'style-loader',
+                    options: {
+                        injectType: 'singletonStyleTag',
+                        attributes: {
+                            'data-cke': true
+                        }
+                    }
+                },
+                {
+                    loader: 'postcss-loader',
+                    options: styles.getPostCssConfig( {
+                        themeImporter: {
+                            themePath: require.resolve( '@ckeditor/ckeditor5-theme-lark' )
+                        },
+                        minify: true
+                    } )
+                }
+            ]
+        },
+
+        //webpack.config.js 505번째 줄에 소스 추가 (cssRegex 검색)
+        {
+            test: cssRegex,
+            exclude: [
+                cssModuleRegex,
+                /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
+            ],
+        }
+
+        //webpack.config.js 527번째 줄에 소스 추가 (cssModuleRegex 검색)
+        {
+            test: cssModuleRegex,
+            exclude: [
+                /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
+            ],
+        }
+        
+        //webpack.config.js 585번째 줄에 소스 추가
+        {
+            loader: require.resolve( 'file-loader' ),
+            // Exclude `js` files to keep the "css" loader working as it injects
+            // its runtime that would otherwise be processed through the "file" loader.
+            // Also exclude `html` and `json` extensions so they get processed
+            // by webpack's internal loaders.
+            exclude: [
+                /\.(js|mjs|jsx|ts|tsx)$/,
+                /\.html$/,
+                /\.json$/,
+                /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
+                /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/
+            ],
+            options: {
+                name: 'static/media/[name].[hash:8].[ext]',
+            }
+        }
+```
+<br />
+
+### 🔍 5. CKEditor5 사용방법 변경
+```javascript
+    //변경 전
+    import CKEditor from '@ckeditor/ckeditor5-react';
+    
+    //변경 후
+    import { CKEditor } from '@ckeditor/ckeditor5-react';
+```
+
+<br />
+
+```javascript
+    //변경 전
+    <CKEditor
+        editor="(...)"
+        data="(...)"
+        onInit="(...)"
+    />
+
+    //변경 후
+    <CKEditor
+        editor="(...)"
+        data="(...)"
+        onReady="(...)"
+    />
 ```
 
 <br />
