@@ -211,6 +211,9 @@
                 name: 'static/media/[name].[hash:8].[ext]',
             }
         }
+
+    5. EdiotrConfig.js 파일 생성 및 소스 추가
+        - 'https://www.ssaple.net/posts/5ef0b5c69e4ac10611c45a57' 참고
 ```
 <br />
 
