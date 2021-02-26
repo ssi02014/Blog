@@ -114,6 +114,8 @@
     </Row>
 ```
 
+<br />
+
 ### 🔍 4. font-awesome 사용법
 ```javascript
     1. yarn add or npm i @fortawesome/fontawesome-svg-core

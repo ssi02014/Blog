@@ -1,17 +1,17 @@
-#main-footer {
-    background: #343a40;
-    color: #fff;
-    text-align: center;
-    p {
-        margin-bottom: 0;
-        padding: 0.5rem;
-    }
+//레이아웃
+.main-body {
+    min-width: 70%;
 }
 
-#main-body {
-    min-width: 90vh;
+//header nav bar
+.nav-bar {
+    color: #fff;
+    font-size: 2rem;
+    display: none;
 }
-#page-header {
+
+//page-header
+.page-header {
     height: 200px;
     background: #fdfdfd;
     background-position: 60% 50%;
@@ -21,8 +21,44 @@
     padding-top: 60px;
 }
 
+//footer
+.main-footer {
+    background: #343a40;
+    color: #fff;
+    text-align: center;
+    .col {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .copyright {
+        width: 100%;
+        margin-bottom: 0;
+        padding: 0.5rem 0;
+    }
+}
+
+//부트스트랩 custom
+.row {
+    margin:0;
+}
+
 .card-img-top {
     width: 100%;
     height: 20rem;
     object-fit: cover;
+}
+
+@media (max-width: 1200px ) {
+    .nav-bar {
+        display: inline-block;
+    }
+    #main-body {
+        min-width: 95%;
+    }
+}
+
+@media (max-width: 991px ) {
+    .nav-bar {
+        display: inline-block;
+    }
 }

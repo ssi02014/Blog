@@ -15,7 +15,7 @@ const MyRouter = () => {
         <>
             <AppNavbar></AppNavbar>
             <Header></Header>
-            <Container id="main-body">
+            <Container id="main-body" className="main-body">
                 <Switch>
                     <Route path="/" component={PostCardList} exact/>
                     <Route path="/post" component={PostWrite} exact/>

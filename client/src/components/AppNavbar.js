@@ -3,6 +3,8 @@ import { Collapse, Container, Navbar, NavbarToggler, Nav, NavItem, Form, Button 
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOGOUT_REQUEST } from '../redux/types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import RegisterModal from './auth/RegisterModal';
 import LoginModal from './auth/LoginModal';
 
@@ -86,7 +88,7 @@ const AppNavbar = () => {
                     <Link to="/" className="text-white text-decoration-none">
                         Minjae's Side Project
                     </Link>
-                    <NavbarToggler onClick={handleToggle} />
+                    <FontAwesomeIcon icon={faBars} onClick={handleToggle} className="nav-bar"/>
                     <Collapse isOpen={isOpen} navbar>
                         <Nav className="ml-auto d-flex justify-content-around" navbar>
                             {isAuthenticated ? 
