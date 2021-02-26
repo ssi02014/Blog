@@ -129,6 +129,15 @@
 ```
 
 <br />
+
+### 🔍 4. CKEditor
+### CKEditor: https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/react.html
+```javascript
+    1. npm run eject
+    2. 
+```
+
+<br />
 <br />
 
 ## 🏃 Redux
