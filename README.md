@@ -62,6 +62,7 @@
 
     JWT_SECRET = "Minjae" //아무 문자열이나 넣으셔도 상관없습니다.
 ```
+<br />
 
 ## 🔍 4. .env 주의 사항
 ```
@@ -96,7 +97,7 @@
 
 <br />
 
-### 🔍 2. node-sass 최신 버전 오류 해결책 ✅
+### 🔍 2. node-sass 최신 버전 오류 해결책
 ```
     - 💥Error: Could not find router reducer in state tree, it must be mounted under "router"
     - 이유: connected-react-router가 아직 history v5를 제대로 반영하지 못해 발생하는 문제. 
@@ -138,7 +139,10 @@
 <br />
 
 ### 🔍 4. CKEditor5 Setting
-### CKEditor: https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/react.html
+### CKEditor:https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/react.html
+
+<br />
+
 ```javascript
     1. npm run eject (이전 모든 변경 사항 commit 완료되야함)
 
