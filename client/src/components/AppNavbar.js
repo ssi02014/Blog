@@ -1,5 +1,5 @@
 import React, { Fragment, useCallback, useEffect, useState } from 'react';
-import { Collapse, Container, Navbar, NavbarToggler, Nav, NavItem, Form, Button } from 'reactstrap';
+import { Collapse, Container, Navbar, Nav, NavItem, Form, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOGOUT_REQUEST } from '../redux/types';
