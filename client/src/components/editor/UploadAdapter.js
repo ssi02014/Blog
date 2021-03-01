@@ -1,8 +1,8 @@
 import dotenv from 'dotenv';
-
 dotenv.config();
 
 class MyUploadAdapter {
+
     constructor( loader ) {
         // The file loader instance to use during the upload.
         this.loader = loader;
@@ -33,7 +33,7 @@ class MyUploadAdapter {
         // integration to choose the right communication channel. This example uses
         // a POST request with JSON as a data structure but your configuration
         // could be different.
-        xhr.open( 'POST', `${process.env.REACT_APP_BASIC_SERVER_URL}/api/post/image`, true );
+        xhr.open('POST', `${process.env.REACT_APP_BASIC_SERVER_URL}/api/post/image`, true );
         xhr.responseType = 'json';
     }
 

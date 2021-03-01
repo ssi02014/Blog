@@ -1,4 +1,4 @@
-import express, { response } from 'express';
+import express from 'express';
 import multer from 'multer';
 import multerS3 from 'multer-s3'; //multer는파일들을 주고받을 수 있게 해줌
 import path from 'path'; //경로 파악에 도움을줌
@@ -22,19 +22,18 @@ const uploadS3 = multer({
         s3,
         bucket: "minjaesideproject/upload",
         region: "ap-northeast-2",
+        key(req, file, cb) {
+            const ext = path.extname(file.originalname);
+            const basename = path.basename(file.originalname, ext); 
+            cb(null, basename + new Date().valueOf() + ext);
+        },
     }),
-    key (req, file, cb) {
-        const ext = path.extname(file.originalname);
-        const basename = path.basename(file.originalname, ext); 
-        cb(null, basename + new Date().valueOf() + ext);
-    },
     limits: { fieldSize: 100 * 2048 * 2048 },
-
-})
+});
 
 // api/post/image
 //uploadS3.array('upload', 5)의 의미는 5개로 제한한다는 뜻
-router.post("/image", uploadS3.array('upload', 5), async(req, res, next) => {
+router.post('/image', uploadS3.array('upload', 5), async(req, res, next) => {
     try {
         console.log(req.files.map(v => v.location));
         res.json({ uploaded: true, url: req.files.map(v => v.location) });
@@ -42,7 +41,7 @@ router.post("/image", uploadS3.array('upload', 5), async(req, res, next) => {
         console.error(e);
         res.json({ uploaded: false, url: null });
     }
-}) 
+});
 
 // api/post
 router.get('/', async(req, res) => {

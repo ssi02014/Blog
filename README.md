@@ -63,6 +63,13 @@
     JWT_SECRET = "Minjae" //아무 문자열이나 넣으셔도 상관없습니다.
 ```
 
+## 🔍 4. .env 주의 사항
+```
+    1. React에서 사용할 때는 접두사로 REACT_APP_ 넣어야된다.
+    2. 변경 사항을 반영하려면 서버를 다시 시작해야 된다.
+    3. src 폴더가 아닌 root 폴더 즉(package.json과 동일한 위치)에 있어야 한다.
+```
+
 <br />
 
 ### ./confing/index.js로 .env 정보 가져오기
@@ -133,7 +140,7 @@
 ### 🔍 4. CKEditor5 Setting
 ### CKEditor: https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/react.html
 ```javascript
-    1. npm run eject
+    1. npm run eject (이전 모든 변경 사항 commit 완료되야함)
 
     2. yarn add @babel/plugin-transform-react-jsx @babel/plugin-transform-react-jsx-self
 
@@ -217,10 +224,24 @@
 
     6. UploadAdaper.js 파일 생성 및 소스 수정
         - 'https://ckeditor.com/docs/ckeditor5/latest/framework/guides/deep-dive/upload-adapter.html#the-complete-implementation' 참고
+
+        _initRequest() { 
+            const xhr = this.xhr = new XMLHttpRequest();
+            xhr.open('POST', `http://localhost:7000/api/post/image`, true ); //여기 수정
+            xhr.responseType = 'json';
+        }   
+
+        // funtcion MyCustomUploadAdapterPlugin -> My init(화살표 함수)
+        const Myinit = ( editor ) => { //그냥 함수에서 화살표 함수로 수정
+            editor.plugins.get( 'FileRepository' ).createUploadAdapter = ( loader ) => {
+                return new MyUploadAdapter( loader );
+            };
+        }
+        export default Myinit;
 ```
 <br />
 
-### 🔍 5. CKEditor5 사용방법 변경
+### 🔍 5. CKEditor5 사용 방법 변경
 ```javascript
     //변경 전
     import CKEditor from '@ckeditor/ckeditor5-react';
@@ -237,6 +258,7 @@
         editor="(...)"
         data="(...)"
         onInit="(...)"
+        onBlur="(...)"
     />
 
     //변경 후
@@ -244,9 +266,33 @@
         editor="(...)"
         data="(...)"
         onReady="(...)"
+        onBlur="(...)"
     />
 ```
 
+<br />
+
+### 🔍 6. CKEditor5 Styling
+```scss
+        //CKEditor5 Setting
+        .ck {
+            .ck-editor {
+                min-width: 100%;
+            }
+        }
+
+        .ck-editor__editable {
+            max-height: 80rem;
+            min-height: 40rem;
+            min-width: 100%;
+        }
+
+        .ck-editor__editable_inline {
+            max-height: 80rem;
+            min-height: 40rem;
+            min-width: 100%;
+        }
+```
 <br />
 <br />
 

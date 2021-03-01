@@ -27,6 +27,7 @@ import IndentBlock from "@ckeditor/ckeditor5-indent/src/indentblock";
 /* import Base64UploadAdapter from "@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter"; */
 import SimpleUploadAdapter from "@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter";
 import "@ckeditor/ckeditor5-build-classic/build/translations/ko";
+
 import dotenv from "dotenv";
 
 //.env 파일을 불러오기 위함
@@ -206,4 +207,9 @@ export const editorConfiguration = {
             "X-CSRF-TOKEN": "CSFR-Token",
         },
     },
+};
+
+export const ReadOnly_Configuration = {
+    toolbar: ["heading"],
+    heading: {},
 };
