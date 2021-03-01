@@ -214,6 +214,9 @@
 
     5. EdiotrConfig.js 파일 생성 및 소스 추가
         - 'https://www.ssaple.net/posts/5ef0b5c69e4ac10611c45a57' 참고
+
+    6. UploadAdaper.js 파일 생성 및 소스 수정
+        - 'https://ckeditor.com/docs/ckeditor5/latest/framework/guides/deep-dive/upload-adapter.html#the-complete-implementation' 참고
 ```
 <br />
 
