@@ -6,6 +6,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-editor-classic/src/classiceditor"
 import { editorConfiguration } from "../../components/editor/EditorConfig";
 import Myinit from "../../components/editor/UploadAdapter";
 import dotenv from 'dotenv';
+import { POSTS_UPLOADING_REQUEST } from '../../redux/types';
 
 dotenv.config();
 
@@ -67,16 +68,24 @@ const PostWrite = () => {
         })
     }
 
-    const onSubmit = e => {
+    const onSubmit = async e => {
+        await e.preventDefault();
+
         const { title, contents, fileUrl, category} = formValue;
-        e.preventDefault();
+        const token = localStorage.getItem("token");
+        const body = { title, contents, fileUrl, category, token };
+
+        dispatch({
+            type: POSTS_UPLOADING_REQUEST,
+            payload: body,
+        });
         
     }
 
     return (
         <div>
             {isAuthenticated ? (
-                <Form>
+                <Form onSubmit={onSubmit}>
                     <FormGroup className="mb-3">
                         <Label for="title">Title</Label>
                         <Input 
