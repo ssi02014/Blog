@@ -8,8 +8,8 @@ import {
 } from '../types';
 
 const initialState = {
-    comments = [],
-    creatorId = '',
+    comments: [],
+    creatorId: '',
     loading: false,
     isAuthenticated: false,
 }
