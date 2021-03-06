@@ -1,15 +1,21 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';
+import { Link, withRouter } from 'react-router-dom';
 import { 
     POSTS_DETAIL_LOADING_REQUEST, 
     POSTS_DELETE_REQUEST, 
     USER_LOADING_REQUEST
 } from '../../redux/types';
-import { Button, Col, Row } from 'reactstrap';
-import CKEditor from '@ckeditor/ckeditor5-react';
-import { Link, withRouter } from 'react-router-dom';
 import { GrowingSpinner } from '../../components/spinner/Spinner';
+
+import { Button, Col, Row } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencilAlt, faCommentDots, faMouse } from '@fortawesome/free-solid-svg-icons';
+import { editorConfiguration } from "../../components/editor/EditorConfig";
+
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import BalloonEditor from "@ckeditor/ckeditor5-editor-balloon/src/ballooneditor";
 
 const PostDetail = (req) => {
     const dispatch = useDispatch();
@@ -21,11 +27,12 @@ const PostDetail = (req) => {
         dispatch({
             type: POSTS_DETAIL_LOADING_REQUEST,
             payload: req.match.params.id
-        })
+        });
+
         dispatch({
             type: USER_LOADING_REQUEST,
             payload: localStorage.getItem('token'),
-        })
+        });
     }, [dispatch, req.match.params.id]);
 
     const onDeleteClick = () => {
@@ -34,9 +41,9 @@ const PostDetail = (req) => {
             payload: {
                 id: req.match.params.id,
                 token: localStorage.getItem('token'),
-            }
-        })
-    }
+            },
+        });
+    };
 
     const EditButtin = (
         <>
@@ -75,7 +82,7 @@ const PostDetail = (req) => {
     const Body = (
         <>
             {userId === creatorId ? EditButtin : HomeButton}
-            <Row className="border-bottom border-top border-dark p-3 mb-3 justify-content-between">
+            <Row className="border-bottom border-top border-dark p-3 mb-3 d-flex justify-content-between">
                 {/* 삼항 연산자가 아닌 조건문으로 쓰려면 {(() => {})()} (즉시 실행 문) */}
                 {(() => {
                     if (postDetail && postDetail.creator) {
@@ -97,6 +104,34 @@ const PostDetail = (req) => {
                     }
                 })()}
             </Row>
+            {postDetail && postDetail.comments ? (
+                <>
+                    <div className="d-flex justify-content-end align-items-baseline small">
+                        <FontAwesomeIcon icon={faPencilAlt} />
+                        &nbsp;
+                        <span>{postDetail.date}</span>
+                        &nbsp;&nbsp;
+                        <FontAwesomeIcon icon={faCommentDots} />
+                        &nbsp;
+                        <span>{postDetail.comments.length}</span>
+                        &nbsp;&nbsp;
+                        <FontAwesomeIcon icon={faMouse} />
+                        <span>{postDetail.views}</span>
+                    </div>
+
+                    <Row className="mb-3">
+                        <CKEditor
+                            editor={BalloonEditor}
+                            data={postDetail.contents}
+                            config={editorConfiguration}
+                            disabled="true"
+                        />
+                    </Row>
+
+                </>
+            ) : (
+                <h1>hi</h1>
+            )}
         </>
     );
 
@@ -108,4 +143,4 @@ const PostDetail = (req) => {
     );
 };
 
-export default withRouter(PostDetail);
+export default PostDetail;

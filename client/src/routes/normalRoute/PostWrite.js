@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import dotenv from 'dotenv';
+
+//reactstrap
 import { Button, Col, Form, FormGroup, Input, Label, Progress } from 'reactstrap';
+
+//CKEditor
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from "@ckeditor/ckeditor5-editor-classic/src/classiceditor";
 import { editorConfiguration } from "../../components/editor/EditorConfig";
 import Myinit from "../../components/editor/UploadAdapter";
-import dotenv from 'dotenv';
+
+//redux
 import { POSTS_UPLOADING_REQUEST } from '../../redux/types';
 
 dotenv.config();
