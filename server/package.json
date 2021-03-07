@@ -5,7 +5,7 @@
   "author": "JeonMinJae",
   "scripts": {
     "dev-watch": "babel-watch server.js --ignore'./client'",
-    "start:dev": "nodemon server.js --exec babel-node"
+    "start": "nodemon server.js --exec babel-node"
   },
   "license": "ISC",
   "dependencies": {
