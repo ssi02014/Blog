@@ -63,8 +63,13 @@
 
 .ck-editor__editable_inline {
     max-height: 80rem;
-    min-height: 40rem;
+    min-height: 30rem;
     min-width: 100%;
+}
+
+//textarea
+textarea {
+    resize: none;
 }
 
 @media (max-width: 1200px ) {

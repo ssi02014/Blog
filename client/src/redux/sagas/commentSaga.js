@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { all, fork, put, takeEvery, call } from 'redux-saga/effects';
+import { push } from 'connected-react-router';
 import { 
     COMMENT_LOADING_FAILURE,
     COMMENT_LOADING_REQUEST, 
@@ -41,8 +42,7 @@ function* loadComments(action) {
 //UpLoad Comment
 const upLoadCommetsAPI = payload => {
     console.log(payload.id, 'upLoadCommetsAPI ID');
-
-    return axios.post(`/api/post/${payload.id}/comments`);
+    return axios.post(`/api/post/${payload.id}/comments`, payload);
 };
 
 function* upLoadCommets(action) {

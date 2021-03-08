@@ -3,6 +3,7 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 import postSaga from './postSaga';
 import authSaga from './authSaga';
+import commentSaga from './commentSaga';
 
 
 dotenv.config();
@@ -13,5 +14,6 @@ export default function* rootSaga() {
     yield all([
         fork(authSaga),
         fork(postSaga),
+        fork(commentSaga),
     ]);
 }

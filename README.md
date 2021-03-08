@@ -298,6 +298,41 @@
         }
 ```
 <br />
+
+### 🔍 7. textarea 크기 고정시키기
+```css
+    textarea {
+        resize: none;
+    }
+```
+
+<br />
+
+### 🔍 8. comment input value reset
+```javascript
+    1. useRef 사용
+    const resetValue = useRef(null);
+
+    2. input에다 Ref 넣기
+    <Input
+        innerRef={resetValue}
+        type="textarea"
+        name="contents"
+        id="contents"
+        onChange={onChange}
+        placeholder="Comment"
+    />
+
+    3. resetValue.current.value 초기화 및 formValue()초기화
+    const onSubmit = async e => {
+
+        (...)
+
+        resetValue.current.value = '';
+        setformValue("");
+    }
+```
+<br />
 <br />
 
 ## 🏃 Redux

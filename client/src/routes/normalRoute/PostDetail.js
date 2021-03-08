@@ -9,20 +9,22 @@ import {
 } from '../../redux/types';
 import { GrowingSpinner } from '../../components/spinner/Spinner';
 
-import { Button, Col, Row } from 'reactstrap';
+import { Button, Col, Container, Row } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt, faCommentDots, faMouse } from '@fortawesome/free-solid-svg-icons';
 import { editorConfiguration } from "../../components/editor/EditorConfig";
 
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import BalloonEditor from "@ckeditor/ckeditor5-editor-balloon/src/ballooneditor";
+import Comments from '../../components/comment/Comments';
 
 const PostDetail = (req) => {
     const dispatch = useDispatch();
     // const { isAuthenticated } = useSelector((state) => state.auth);
     const { postDetail, creatorId, title, loading } = useSelector(state => state.post);
     const { userId, userName } = useSelector(state => state.auth);
-
+    const { comments } = useSelector(state => state.comment);
+    
     useEffect(() => {
         dispatch({
             type: POSTS_DETAIL_LOADING_REQUEST,
@@ -127,7 +129,44 @@ const PostDetail = (req) => {
                             disabled="true"
                         />
                     </Row>
-
+                    <Row>
+                        <Container className="mb-3 border border-blue rounded">
+                            {Array.isArray(comments) 
+                                ? comments.map(
+                                    ({contents, creator, date, _id, creatorName }) => {
+                                        return (
+                                            <div key={_id}>
+                                                <Row className="justify-content-between p-2">
+                                                    <div className="font-weight-bold">
+                                                        {creatorName ? creatorName : creator}
+                                                    </div>
+                                                    <div className="text-small">
+                                                        <span className="font-weight-bold">
+                                                            {date.split(" ")[0]}
+                                                        </span>
+                                                        <span className="font-weight-light">
+                                                            {" "}
+                                                            {date.split(" ")[1]}
+                                                        </span>
+                                                    </div>
+                                                </Row>
+                                                <Row className="p-2">
+                                                    <div>
+                                                        {contents}
+                                                    </div>
+                                                </Row>
+                                                <hr />
+                                            </div>
+                                        )
+                                    }
+                            ) : "Creator"}
+                            <Comments 
+                                id={req.match.params.id}
+                                userId={userId}
+                                userName={userName}
+                            />
+                        </Container>
+                    </Row>
                 </>
             ) : (
                 <h1>hi</h1>
@@ -143,4 +182,4 @@ const PostDetail = (req) => {
     );
 };
 
-export default PostDetail;
+export default withRouter(PostDetail);
