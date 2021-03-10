@@ -31,20 +31,24 @@ const PostWrite = () => {
 
         if(data && data.match("<img src=")) {
             const whereImgStart = data.indexOf("<img src=");
-            const extName = ["jpeg", "png", "jpg", "gif"];
+            console.log(whereImgStart);
+            const extName = ["jpeg", "png", "jpg", "gif", "PNG", "JPEG", "JPG", "GIF"];
 
             let whereImgEnd = "";
             let extNameFind = "";
             let resultImgUrl = "";
 
+
             for (let i = 0; i < extName.length; i++) {
+
                 if (data.match(extName[i])) {
                     extNameFind = extName[i];
                     whereImgEnd = data.indexOf(`${extName[i]}`);
                 }
             }
+            console.log(whereImgEnd);
 
-            if (extNameFind === 'jpeg') {
+            if (extNameFind === 'jpeg' || extNameFind === 'JPEG') {
                 resultImgUrl = data.substring(whereImgStart + 10, whereImgEnd + 4);
             } else {
                 resultImgUrl = data.substring(whereImgStart + 10, whereImgEnd + 3);

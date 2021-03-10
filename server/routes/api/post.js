@@ -39,7 +39,6 @@ const uploadS3 = multer({
     }),
     limits: { fieldSize: 100 * 2048 * 2048 },
 });
-
 // api/post/image
 //uploadS3.array('upload', 5)의 의미는 5개로 제한한다는 뜻
 router.post('/image', uploadS3.array('upload', 5), async(req, res, next) => {
