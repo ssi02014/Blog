@@ -299,10 +299,32 @@
 ```
 <br />
 
-### 🔍 7. textarea 크기 고정시키기
-```css
-    textarea {
-        resize: none;
+### 🔍 7. ProtectRoute 구현
+```javascript
+    export const EditProtectedRoute = ({component: Component, ...rest}) => {
+        const {userId} = useSelector(state => state.auth);
+        const {creatorId} = useSelector(state => state.post);
+        return (
+            <Route
+                {...rest}
+                render = {(props) => {
+                    if(userId === creatorId) {
+                        return <Component {...props} />
+                    } else {
+                        return (
+                            <Redirect 
+                                to={{
+                                    pathname: "/",
+                                    state: {
+                                        from: props.location
+                                    }
+                                }}
+                            />
+                        )
+                    }
+                }}
+            />
+        )
     }
 ```
 
