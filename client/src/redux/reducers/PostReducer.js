@@ -8,6 +8,12 @@ import {
     POSTS_DETAIL_LOADING_REQUEST,
     POSTS_DETAIL_LOADING_SUCCESS,
     POSTS_DETAIL_LOADING_FAILURE,
+    POSTS_EDIT_LOADING_SUCCESS,
+    POSTS_EDIT_LOADING_REQUEST,
+    POSTS_EDIT_LOADING_FAILURE,
+    POSTS_EDIT_UPLOADING_REQUEST,
+    POSTS_EDIT_UPLOADING_SUCCESS,
+    POSTS_EDIT_UPLOADING_FAILURE,
 } from '../types';
 
 const initialState = {
@@ -76,6 +82,42 @@ const postReducer = (state = initialState, action) => {
                 loading: false,
             }
         case POSTS_DETAIL_LOADING_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+                loading: false,
+            }
+        case POSTS_EDIT_LOADING_REQUEST:
+            return {
+                ...state,
+                posts: [],
+                loading: true,
+            }
+        case POSTS_EDIT_LOADING_SUCCESS:
+            return {
+                ...state,
+                postDetail: action.payload,
+                loading: false,
+            }
+        case POSTS_EDIT_LOADING_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+                loading: false,
+            }
+        case POSTS_EDIT_UPLOADING_REQUEST:
+            return {
+                ...state,
+                loading: true,
+            }
+        case POSTS_EDIT_UPLOADING_SUCCESS:
+            return {
+                ...state,
+                posts: action.payload,
+                isAuthenticated: true,
+                loading: false,
+            }
+        case POSTS_EDIT_UPLOADING_FAILURE:
             return {
                 ...state,
                 error: action.payload,
