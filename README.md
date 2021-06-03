@@ -43,6 +43,12 @@
 - Fix(Fixex, Fixed): 버그 픽스나 핫 픽스 이슈를 완료했을 때
 - Merge: Branch를 merge 했을 때
 - Conflict: 충돌을 해결했을 때
+- Docs: README.md와 같은 문서 수정했을 때
+
+<br />
+
+## 📖 Projects Board
+![그림1](https://user-images.githubusercontent.com/64779472/120682567-91ea5b80-c4d7-11eb-9d39-c6dbe0643446.png)
 
 <br />
 
