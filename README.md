@@ -2,15 +2,13 @@
 ### MERN(Mongodb, Express, React, Node) Stack으로 만든 나만의 블로그😁
 
 <br />
-<br />
 
-## 🙏 Blog App Clone 시 행동 수칙
-1. **" npm install or yarn install "** 을 server 폴더에서 입력해주세요. **(백엔드 종속성 다운받기)**
-2. **" npm install or yarn install "** 을 client 폴더에서 입력해주세요. **(프론트엔드 종속성 다운받기)**
+## 🙏 Blog App 종속성 다운로드
+1. **" npm i or yarn install "** 을 server 폴더에서 입력해주세요. **(백엔드 종속성 다운받기)**
+2. **" npm i or yarn install "** 을 client 폴더에서 입력해주세요. **(프론트엔드 종속성 다운받기)**
 3. **.env** 파일을 server 폴더 내부에 만들어주셔야 됩니다. **(밑에 참고)👇**
-4. server 실행 시 **start:dev**로 실행해주세요. 
+4. **.env** 파일을 client 폴더 내부에 만들어주셔야 됩니다. **(밑에 참고)👇**
 
-<br />
 <br />
 
 ## 🔖 Main Development Stack
@@ -29,6 +27,29 @@
 5. Styling: Bootstrap4(reactstrap), SCSS
 
 <br />
+
+### 👨🏻‍💻 Cloud
+1. Aws EC2
+2. Aws S3
+
+<br />
+
+## 📃 커밋 메시지
+- Add: 특정 기능을 하는 코드를 구현하였을 때
+- Modify: 이미 구현된 기능을 수정하는데, 기능의 향상이 이루어졌을 때
+- Close(Closes, Closed): 일반적인 개발 이슈를 완료했을 때
+- Refactor: 리팩토링 했을 때(기능 향상은 아니다. 중복 코드 제거 및 변수 & 함수 등 코드 디자인 변경)
+- Delete: 불필요한 코드 제거
+- Fix(Fixex, Fixed): 버그 픽스나 핫 픽스 이슈를 완료했을 때
+- Merge: Branch를 merge 했을 때
+- Conflict: 충돌을 해결했을 때
+- Docs: README.md와 같은 문서 수정했을 때
+
+<br />
+
+## 📖 Projects Board
+![그림1](https://user-images.githubusercontent.com/64779472/120682567-91ea5b80-c4d7-11eb-9d39-c6dbe0643446.png)
+
 <br />
 
 ## 📈 Server: 학습 내용 및 이슈
@@ -53,8 +74,8 @@
 
 <br />
 
-## 🔍 3. .env
-```javascript
+## 🔍 3. sever: .env
+```js
     //본인의 mongoDB cluster 생성 시에 만든 connection URI를 넣어주세요.
     MONGO_URI = "mongodb+srv://<id>:<password>@blog.io9gx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 
@@ -64,7 +85,14 @@
 ```
 <br />
 
-## 🔍 4. .env 주의 사항
+## 🔍 4. client: .env
+```js
+    REACT_APP_BASIC_SERVER_URL = "http://localhost:7000"
+    REACT_APP_BASIC_IMAGE_URL = "https://<본인s3버킷>.s3.ap-northeast-2.amazonaws.com/<버킷 속 객체 폴더명(ex.upload)>/<이미지URL>"
+```
+<br />
+
+## 🔍 5. .env 주의 사항
 ```
     1. React에서 사용할 때는 접두사로 REACT_APP_ 넣어야된다.
     2. 변경 사항을 반영하려면 서버를 다시 시작해야 된다.
@@ -407,8 +435,6 @@
 
 
     2. 📃 초기 값 및 Reducer 함수 작성
-
-        - 초기 값 설정
         const initialState = {
             token: localStorage.getItem('token'),
             isAuthenticated: null,
@@ -416,7 +442,6 @@
             ...
         }
 
-        - Reducer 함수 작성 예시
         const authReducer = (state = initialState, action) => {
             switch (action.type) {
                 case LOGIN_REQUEST:
@@ -433,11 +458,22 @@
 
 
     3. 📃 rootReducer에 통합
+        import { combineReducers } from 'redux';
+        import { connectRouter } from 'connected-react-router';
+        import authReducer from './authReducer';
+        import postReducer from './PostReducer';
+        import commentReducer from './commentReducer';
 
+        const createRootReducer = (history) => combineReducers({
+            router: connectRouter(history),
+            auth: authReducer,
+            post: postReducer,
+            comment: commentReducer,
+        })
+
+        export default createRootReducer;
 
     4. 📃 Saga 작성
-
-        - Saga 작성 예시(logout)
         function* logout(action) {
             try {
                 yield put({
@@ -463,18 +499,37 @@
             ]);
         }
 
-
     5. 📃 rootSaga에 통합
+        import { all, fork } from 'redux-saga/effects';
+        import postSaga from './postSaga';
+        import authSaga from './authSaga';
+        import commentSaga from './commentSaga';
 
+        export default function* rootSaga() {
+            yield all([
+                fork(authSaga),
+                fork(postSaga),
+                fork(commentSaga),
+            ]);
+        }
 
-    6. 📃 component에서 dispatch 
-
-        - dispatch 작성 예시(LoginModal)
+    6. 📃 dispatch로 액션 발생
         const handleToggle = () => {
             dispatch({
                 type: CLEAR_ERROR_REQUEST,
             })
             setModal(!modal);
         };
-
 ```
+
+<br />
+
+## 🏃 useParams()
+- react-router-dom의 useParams Hook을 사용하면 하나의 컴포넌트에서 전달받은 URL Parameter를 가져올 수 있다.
+```js
+    import { useParams } from 'react-router';
+
+    let { categoryName } = useParams();
+```
+
+<br />

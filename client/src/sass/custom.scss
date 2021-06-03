@@ -72,6 +72,12 @@ textarea {
     resize: none;
 }
 
+.my_category {
+    &:last-child {
+        margin-bottom: 0.25rem;
+    }
+}
+
 @media (max-width: 1200px ) {
     #main-body {
         min-width: 95%;
