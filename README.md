@@ -520,5 +520,16 @@
             })
             setModal(!modal);
         };
-
 ```
+
+<br />
+
+## 🏃 useParams()
+- react-router-dom의 useParams Hook을 사용하면 하나의 컴포넌트에서 전달받은 URL Parameter를 가져올 수 있다.
+```js
+    import { useParams } from 'react-router';
+
+    let { categoryName } = useParams();
+```
+
+<br />
