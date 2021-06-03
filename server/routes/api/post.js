@@ -245,7 +245,7 @@ router.post("/:id/edit", auth, async (req, res, next) => {
 
 router.get("/category/:categoryName", async (req, res, next) => {
   try {
-    const result = Category.findOne(
+    const result = await Category.findOne(
       {
         categoryName: {
           $regex: req.params.categoryName,

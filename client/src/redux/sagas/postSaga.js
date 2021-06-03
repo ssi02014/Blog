@@ -232,13 +232,11 @@ function* CategoryFind(action) {
       type: CATEGORY_FIND_SUCCESS,
       payload: result.data,
     });
-    yield put(push(`/post/${result.data._id}`));
   } catch (e) {
     yield put({
       type: CATEGORY_FIND_FAILURE,
       payload: e,
     });
-    yield put(push("/"));
   }
 }
 
