@@ -14,6 +14,9 @@ import {
   POSTS_EDIT_UPLOADING_REQUEST,
   POSTS_EDIT_UPLOADING_SUCCESS,
   POSTS_EDIT_UPLOADING_FAILURE,
+  CATEGORY_FIND_REQUEST,
+  CATEGORY_FIND_SUCCESS,
+  CATEGORY_FIND_FAILURE,
 } from "../types";
 
 const initialState = {
@@ -122,6 +125,25 @@ const postReducer = (state = initialState, action) => {
       return {
         ...state,
         error: action.payload,
+        loading: false,
+      };
+
+    case CATEGORY_FIND_REQUEST:
+      return {
+        ...state,
+        posts: [],
+        loading: true,
+      };
+    case CATEGORY_FIND_SUCCESS:
+      return {
+        ...state,
+        categoryFindResult: action.payload,
+        loading: false,
+      };
+    case CATEGORY_FIND_FAILURE:
+      return {
+        ...state,
+        categoryFindResult: action.payload,
         loading: false,
       };
     default:
