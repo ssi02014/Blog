@@ -261,4 +261,5 @@ router.get("/category/:categoryName", async (req, res, next) => {
     next(e);
   }
 });
+
 export default router;
