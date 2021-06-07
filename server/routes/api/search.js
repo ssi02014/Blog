@@ -5,15 +5,12 @@ const router = express.Router();
 
 router.get("/:searchTerm", async (req, res, next) => {
   try {
-    const result = await Post.find(
-      {
-        title: {
-          $regex: req.params.categoryName,
-          $options: "i",
-        },
+    const result = await Post.find({
+      title: {
+        $regex: req.params.searchTerm,
+        $options: "i",
       },
-      "posts"
-    );
+    });
     console.log(result, "Search result");
     res.send(result);
   } catch (e) {
