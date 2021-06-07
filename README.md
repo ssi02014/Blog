@@ -35,6 +35,8 @@
 <br />
 
 ## 📃 커밋 메시지
+![1111](https://user-images.githubusercontent.com/64779472/121060969-3df4b500-c7fe-11eb-8a28-8d4b152c6f78.PNG)
+
 - Add: 특정 기능을 하는 코드를 구현하였을 때
 - Modify: 이미 구현된 기능을 수정하는데, 기능의 향상이 이루어졌을 때
 - Close(Closes, Closed): 일반적인 개발 이슈를 완료했을 때
