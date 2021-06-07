@@ -153,12 +153,14 @@ const postReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: [],
+        searchBy: action.payload,
         loading: true,
       };
     case SEARCH_SUCCESS:
       return {
         ...state,
         searchResult: action.payload,
+        searchBy: action.payload,
         loading: false,
       };
     case SEARCH_FAILURE:

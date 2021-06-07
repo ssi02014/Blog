@@ -258,7 +258,7 @@ function* SearchResult(action) {
       type: SEARCH_SUCCESS,
       payload: result.data,
     });
-    yield put(push(`/search/${encodeURIComponent(payload)}`));
+    yield put(push(`/search/${encodeURIComponent(action.payload)}`));
   } catch (e) {
     yield put({
       type: SEARCH_FAILURE,
