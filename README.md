@@ -533,3 +533,8 @@
 ```
 
 <br />
+
+- useParams()를 사용하지 않더라도 `match` 객체를 통해서도 URL Parameter를 가져올 수 있다.
+```js
+    const categoryName = props.match.params.categoryName;
+```
