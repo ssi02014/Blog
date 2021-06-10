@@ -134,8 +134,9 @@ function EditPasswordAPI(payload) {
   if (token) {
     config.headers["x-auth-token"] = token;
   }
+  console.log(payload);
 
-  return axios.post(`/api/user/${payload.userName}`, payload, config);
+  return axios.post(`/api/user/${payload.userName}/profile`, payload, config);
 }
 
 function* EditPassword(action) {
@@ -143,11 +144,11 @@ function* EditPassword(action) {
     //action.payload: {email: ~, password: ~}
     const result = yield call(EditPasswordAPI, action.payload);
 
-    console.log(result, "Register User Data");
+    console.log(result);
 
     yield put({
       type: PASSWORD_EDIT_UPLOADING_SUCCESS,
-      payload: result.data,
+      payload: result,
     }); //성공 액션 dispatch
   } catch (e) {
     yield put({

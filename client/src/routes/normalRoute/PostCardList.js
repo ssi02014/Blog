@@ -25,7 +25,9 @@ const PostCardList = () => {
       <Row className="border-bottom border-top border-primary py-2 mb-3">
         <Category posts={categoryFindResult} />
       </Row>
-      <Row>{posts ? <PostCardOne posts={posts} /> : GrowingSpinner}</Row>
+      <Row>
+        {posts ? <PostCardOne posts={posts.reverse()} /> : GrowingSpinner}
+      </Row>
     </>
   );
 };
