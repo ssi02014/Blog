@@ -53,12 +53,21 @@ router.post("/image", uploadS3.array("upload", 5), async (req, res, next) => {
 });
 
 // POST api/post
-router.get("/", async (req, res) => {
-  const postFindResult = await Post.find();
-  const categoryFindResult = await Category.find();
-  const result = { postFindResult, categoryFindResult };
+router.get("/skip/:skip", async (req, res) => {
+  try {
+    const postCount = await Post.countDocuments();
+    const postFindResult = await Post.find()
+      .skip(Number(req.params.skip))
+      .limit(6)
+      .sort({ date: -1 });
+    const categoryFindResult = await Category.find();
+    const result = { postFindResult, categoryFindResult, postCount };
 
-  res.json(result);
+    res.json(result);
+  } catch (e) {
+    console.log(e);
+    res.json({ msg: "더이상 포스트가 없습니다. " });
+  }
 });
 
 router.post("/", auth, uploadS3.none(), async (req, res, next) => {
