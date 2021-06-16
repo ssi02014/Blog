@@ -616,3 +616,34 @@
         </>
     )
 ```
+
+<br />
+
+## 🏃 console.log 제거
+- 패키지 다운로드
+```
+    npm i babel-plugin-transform-remove-console
+```
+
+<br />
+
+- webpack.config.js에서 loaderMap 밑에 `["transform-remove-console", { exclude: ["error", "warn"] }]`추가
+```js
+    plugins: [
+        [
+        require.resolve("babel-plugin-named-asset-import"),
+            {
+                loaderMap: {
+                svg: {
+                    ReactComponent:
+                    "@svgr/webpack?-svgo,+titleProp,+ref![path]",
+                },
+                },
+            },
+        ],
+        ["transform-remove-console", { exclude: ["error", "warn"] }],
+        isEnvDevelopment &&
+            shouldUseReactRefresh &&
+            require.resolve("react-refresh/babel"),
+    ].filter(Boolean),
+```
