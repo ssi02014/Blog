@@ -12,6 +12,7 @@ import Post from "../../models/post";
 import Category from "../../models/category";
 import User from "../../models/user";
 import Comment from "../../models/comment";
+import "@babel/polyfill";
 
 //Middleware
 import auth from "../../middleware/auth";
