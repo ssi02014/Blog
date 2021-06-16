@@ -616,3 +616,10 @@
         </>
     )
 ```
+
+<br />
+
+## 🏃 console.log 제거
+```
+    npm i babel-plugin-transform-remove-console
+```
